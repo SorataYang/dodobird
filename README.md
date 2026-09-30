@@ -31,19 +31,18 @@ assets/
 
 ## 部署
 
-任选其一，都是纯静态：
+已托管在 **GitHub Pages**（仓库 [SorataYang/dodobird](https://github.com/SorataYang/dodobird)，main 分支根目录），绑定域名 `www.dodobird.eu.org`。更新主页 = 改完代码 push 到 main，一分钟内自动上线。
 
-- **GitHub Pages**：推到仓库，Settings → Pages → main 分支 / 根目录。
-- **Cloudflare Pages**：连接仓库，构建命令留空，输出目录填 `/`。
-- **和 sub2api 同机 nginx**：把整个目录拷到服务器，加一段 server/location 指到该目录即可：
+域名解析（Cloudflare）还需加一条记录，加完即生效：
 
-```nginx
-server {
-    server_name dodobird.eu.org;
-    root /var/www/dodobird;
-    index index.html;
-}
-```
+| 类型 | 名称 | 目标 | 代理 |
+| ---- | ---- | ---- | ---- |
+| CNAME | www | SorataYang.github.io | 仅 DNS（灰云） |
+
+> 灰云让 GitHub 直接签发 HTTPS 证书；证书下来后想套 CF 也可以再开橙云。
+> 若日后想把主域 `dodobird.eu.org` 也指过来：先确认主域上的服务已迁走，然后在 Cloudflare 加 CNAME `@ → SorataYang.github.io`（Cloudflare 会做 CNAME 压平），并把仓库 CNAME 文件和 Pages 设置里的域名改成主域。
+
+本地预览：`python3 -m http.server 8899`，浏览器开 `http://127.0.0.1:8899`。
 
 ## 待办（上线路前）
 
