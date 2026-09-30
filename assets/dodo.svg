@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="呆呆鸟 DodoBird">
+  <title>呆呆鸟</title>
+  <!-- 地面影子 -->
+  <ellipse cx="256" cy="506" rx="112" ry="8" fill="#262016" opacity="0.08"/>
+  <!-- 小脚 -->
+  <g fill="#E8A64E" stroke="#262016" stroke-width="6" stroke-linejoin="round" paint-order="stroke fill">
+    <ellipse cx="218" cy="503" rx="25" ry="9"/>
+    <ellipse cx="294" cy="503" rx="25" ry="9"/>
+  </g>
+  <!-- 小身子 -->
+  <ellipse cx="256" cy="454" rx="105" ry="52" fill="#F2C73D" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill"/>
+  <!-- 小翅膀 -->
+  <g fill="#F2C73D" stroke="#262016" stroke-width="7" stroke-linejoin="round" paint-order="stroke fill">
+    <ellipse cx="146" cy="452" rx="26" ry="34" transform="rotate(16 146 452)"/>
+    <ellipse cx="366" cy="452" rx="26" ry="34" transform="rotate(-16 366 452)"/>
+  </g>
+  <!-- 大脑袋（上宽下窄的梨形） -->
+  <path d="M 190 414 C 140 398 106 340 106 250 C 104 116 176 50 256 50 C 336 50 408 116 406 250 C 406 340 372 398 322 414 C 294 424 218 424 190 414 Z"
+        fill="#F2C73D" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill"/>
+  <!-- 头顶呆毛 -->
+  <path d="M 250 56 C 242 28 268 16 271 44 C 272 53 262 58 250 56 Z"
+        fill="#F2C73D" stroke="#262016" stroke-width="6" stroke-linejoin="round" paint-order="stroke fill"/>
+  <!-- 大白眼珠 -->
+  <g fill="#FFFFFF" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill">
+    <ellipse cx="168" cy="225" rx="52" ry="64" transform="rotate(-15 168 225)"/>
+    <ellipse cx="344" cy="225" rx="52" ry="64" transform="rotate(15 344 225)"/>
+  </g>
+  <!-- 豆豆眼珠：对称地向下放空 -->
+  <ellipse cx="172" cy="252" rx="15" ry="21" fill="#262016"/>
+  <ellipse cx="340" cy="252" rx="15" ry="21" fill="#262016"/>
+  <circle cx="166" cy="240" r="4.5" fill="#FFFFFF"/>
+  <circle cx="334" cy="240" r="4.5" fill="#FFFFFF"/>
+  <!-- 垂下来的大嘴 -->
+  <path d="M 206 282 C 202 322 224 362 256 362 C 288 362 310 322 306 282 Z"
+        fill="#C07430" stroke="#262016" stroke-width="7" stroke-linejoin="round" paint-order="stroke fill"/>
+  <path d="M 178 216 C 178 192 334 192 334 216 C 334 262 306 294 256 294 C 206 294 178 262 178 216 Z"
+        fill="#E09140" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill"/>
+  <!-- 鼻孔 -->
+  <ellipse cx="228" cy="220" rx="5.5" ry="4" fill="#8A5522" opacity="0.8" transform="rotate(-20 228 220)"/>
+  <ellipse cx="284" cy="220" rx="5.5" ry="4" fill="#8A5522" opacity="0.8" transform="rotate(20 284 220)"/>
+</svg>

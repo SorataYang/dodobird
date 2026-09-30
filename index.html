@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>呆呆鸟 · dodobird.eu.org</title>
+  <meta name="description" content="呆呆鸟的个人主页 —— 不会飞，但一直在线。看起来呆，其实只是毫无防备的真诚。" />
+  <meta property="og:title" content="呆呆鸟 · dodobird.eu.org" />
+  <meta property="og:description" content="不会飞，但一直在线。" />
+  <meta property="og:image" content="assets/icon-512.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <style>
+    :root {
+      --bg: #FBF3E2;
+      --ink: #3B3125;
+      --muted: #8A7A63;
+      --card: #FFFFFF;
+      --line: #EADFC8;
+      --accent: #E8892B;
+      --accent-deep: #D9822B;
+      --btn-ink: #FFF9EE;
+      --shadow: rgba(59, 49, 37, 0.10);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #221B11;
+        --ink: #F3EAD9;
+        --muted: #B3A48B;
+        --card: #2C2415;
+        --line: #3E3421;
+        --btn-ink: #241D12;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #birdBob, .sparkle, .blink { animation: none; }
+      #birdInner, .bubble { transition: none; }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "SF Pro Rounded", ui-rounded, -apple-system, BlinkMacSystemFont,
+        "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      background:
+        radial-gradient(720px 480px at 12% -6%, rgba(245, 166, 60, 0.16), transparent 62%),
+        radial-gradient(640px 460px at 88% 4%, rgba(245, 184, 166, 0.20), transparent 60%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── 顶栏 ─────────────────────────── */
+    header.bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.02em; }
+    .brand img { width: 36px; height: 36px; border-radius: 10px; }
+    .brand small { color: var(--muted); font-weight: 500; }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 0.95rem; }
+    nav a:hover { color: var(--accent); }
+
+    /* ── 主视觉 ───────────────────────── */
+    .hero {
+      display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+      gap: 40px; align-items: center;
+      padding: 36px 0 72px;
+    }
+    .hero-art { position: relative; }
+    .bird { width: 100%; height: auto; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    #birdBob { animation: bob 5s ease-in-out infinite; }
+    #birdInner { transform-box: fill-box; transform-origin: 50% 75%; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .bird:hover #birdInner { transform: rotate(-4deg); }
+    .blink { transform: scaleY(0); transform-box: fill-box; transform-origin: 50% 0; animation: blink 6s infinite; }
+    .sparkle { transform-box: fill-box; transform-origin: 50% 50%; animation: twinkle 2.8s ease-in-out infinite; }
+    .sparkle.s2 { animation-delay: 0.9s; }
+    .sparkle.s3 { animation-delay: 1.7s; }
+    #birdInner.boing { animation: boing 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    #birdInner.shake { animation: shake 0.55s ease-in-out; }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @keyframes blink { 0%, 92.5%, 98%, 100% { transform: scaleY(0); } 94.5%, 96% { transform: scaleY(1); } }
+    @keyframes twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.75) rotate(0deg); } 50% { opacity: 1; transform: scale(1.1) rotate(18deg); } }
+    @keyframes boing {
+      0% { transform: translateY(0) scale(1, 1); }
+      28% { transform: translateY(-30px) scale(0.96, 1.05); }
+      55% { transform: translateY(0) scale(1.04, 0.94); }
+      75% { transform: translateY(-9px) scale(1, 1); }
+      100% { transform: translateY(0) scale(1, 1); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px) rotate(-2deg); }
+      40% { transform: translateX(7px) rotate(2deg); }
+      60% { transform: translateX(-5px) rotate(-1.5deg); }
+      80% { transform: translateX(4px); }
+    }
+    .bubble {
+      position: absolute; top: -4px; right: 2%;
+      background: var(--card); border: 1.5px solid var(--line);
+      color: var(--ink);
+      padding: 10px 16px; border-radius: 18px 18px 18px 4px;
+      font-size: 0.95rem; font-weight: 600;
+      box-shadow: 0 8px 24px var(--shadow);
+      opacity: 0; transform: translateY(8px) scale(0.9);
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 78%;
+    }
+    .bubble.show { opacity: 1; transform: translateY(0) scale(1); }
+
+    .kicker {
+      display: inline-block; font-size: 0.85rem; font-weight: 700;
+      color: var(--accent); background: rgba(232, 137, 43, 0.12);
+      padding: 5px 14px; border-radius: 999px; margin-bottom: 18px;
+    }
+    h1 { font-size: clamp(2.3rem, 5.6vw, 3.9rem); line-height: 1.22; letter-spacing: 0.01em; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .sub { margin-top: 18px; color: var(--muted); font-size: 1.12rem; max-width: 30em; }
+    .cta { margin-top: 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    button.primary {
+      font: inherit; font-weight: 700; font-size: 1rem;
+      background: var(--ink); color: var(--btn-ink);
+      border: none; border-radius: 999px; padding: 13px 28px;
+      cursor: pointer; transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 6px 18px var(--shadow);
+    }
+    button.primary:hover { transform: translateY(-2px); }
+    button.primary:active { transform: translateY(0) scale(0.97); }
+    .ghost { color: var(--muted); font-weight: 600; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--line); }
+    .ghost:hover { color: var(--accent); }
+    .toast { margin-top: 14px; color: var(--accent-deep); font-weight: 600; font-size: 0.95rem; min-height: 1.6em; opacity: 0; transition: opacity 0.3s; }
+    .toast.show { opacity: 1; }
+
+    /* ── 趣闻卡片 ─────────────────────── */
+    .facts { padding: 30px 0 70px; }
+    .facts h2 { font-size: 1.5rem; margin-bottom: 6px; }
+    .facts .hint { color: var(--muted); margin-bottom: 26px; font-size: 0.98rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      background: var(--card); border: 1.5px solid var(--line); border-radius: 22px;
+      padding: 24px 22px; transition: transform 0.2s, box-shadow 0.25s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px var(--shadow); }
+    .card .emoji { font-size: 1.9rem; display: block; margin-bottom: 12px; }
+    .card h3 { font-size: 1.08rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ── 链接 ─────────────────────────── */
+    .links { padding: 0 0 80px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .links a {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--card); border: 1.5px solid var(--line);
+      border-radius: 999px; padding: 12px 24px;
+      color: var(--ink); text-decoration: none; font-weight: 600;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .links a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px var(--shadow); }
+
+    footer {
+      border-top: 1.5px solid var(--line);
+      padding: 26px 0 40px; color: var(--muted); font-size: 0.9rem;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; padding-top: 8px; }
+      .hero-art { max-width: 360px; margin: 0 auto; }
+      .cards { grid-template-columns: 1fr; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="bar">
+      <div class="brand">
+        <img src="assets/icon.svg" alt="呆呆鸟头像" />
+        <span>dodobird.eu.org</span>
+      </div>
+      <nav>
+        <a href="#facts">呆鸟趣闻</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-art">
+        <!-- 点击小鸟有惊喜 -->
+        <svg class="bird" id="birdSvg" viewBox="0 0 512 512" role="img" aria-label="一只呆呆鸟，点击有惊喜">
+          <g id="birdBob">
+            <ellipse cx="248" cy="500" rx="132" ry="11" fill="#3B3125" opacity="0.08"/>
+            <g id="birdInner">
+              <!-- 小脚 -->
+              <g fill="#E8A64E" stroke="#262016" stroke-width="6" stroke-linejoin="round" paint-order="stroke fill">
+                <ellipse cx="218" cy="503" rx="25" ry="9"/>
+                <ellipse cx="294" cy="503" rx="25" ry="9"/>
+              </g>
+              <!-- 小身子 -->
+              <ellipse cx="256" cy="454" rx="105" ry="52" fill="#F2C73D" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill"/>
+              <!-- 小翅膀 -->
+              <g fill="#F2C73D" stroke="#262016" stroke-width="7" stroke-linejoin="round" paint-order="stroke fill">
+                <ellipse cx="146" cy="452" rx="26" ry="34" transform="rotate(16 146 452)"/>
+                <ellipse cx="366" cy="452" rx="26" ry="34" transform="rotate(-16 366 452)"/>
+              </g>
+              <!-- 大脑袋（上宽下窄的梨形） -->
+              <path d="M 190 414 C 140 398 106 340 106 250 C 104 116 176 50 256 50 C 336 50 408 116 406 250 C 406 340 372 398 322 414 C 294 424 218 424 190 414 Z"
+                    fill="#F2C73D" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill"/>
+              <!-- 头顶呆毛 -->
+              <path d="M 250 54 C 242 26 268 14 271 42 C 272 51 262 56 250 54 Z"
+                    fill="#F2C73D" stroke="#262016" stroke-width="6" stroke-linejoin="round" paint-order="stroke fill"/>
+              <!-- 大白眼珠 -->
+              <g fill="#FFFFFF" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill">
+                <ellipse cx="168" cy="225" rx="52" ry="64" transform="rotate(-15 168 225)"/>
+                <ellipse cx="344" cy="225" rx="52" ry="64" transform="rotate(15 344 225)"/>
+              </g>
+              <!-- 豆豆眼珠：对称地向下放空 -->
+              <ellipse cx="172" cy="252" rx="15" ry="21" fill="#262016"/>
+              <ellipse cx="340" cy="252" rx="15" ry="21" fill="#262016"/>
+              <circle cx="166" cy="240" r="4.5" fill="#FFFFFF"/>
+              <circle cx="334" cy="240" r="4.5" fill="#FFFFFF"/>
+              <!-- 眨眼用的眼皮 -->
+              <rect class="blink" x="108" y="155" width="120" height="142" rx="18" fill="#F2C73D"/>
+              <rect class="blink" x="284" y="155" width="120" height="142" rx="18" fill="#F2C73D"/>
+              <!-- 垂下来的大嘴 -->
+              <path d="M 206 282 C 202 322 224 362 256 362 C 288 362 310 322 306 282 Z"
+                    fill="#C07430" stroke="#262016" stroke-width="7" stroke-linejoin="round" paint-order="stroke fill"/>
+              <path d="M 178 216 C 178 192 334 192 334 216 C 334 262 306 294 256 294 C 206 294 178 262 178 216 Z"
+                    fill="#E09140" stroke="#262016" stroke-width="8" stroke-linejoin="round" paint-order="stroke fill"/>
+              <!-- 鼻孔 -->
+              <ellipse cx="228" cy="220" rx="5.5" ry="4" fill="#8A5522" opacity="0.8" transform="rotate(-20 228 220)"/>
+              <ellipse cx="284" cy="220" rx="5.5" ry="4" fill="#8A5522" opacity="0.8" transform="rotate(20 284 220)"/>
+            </g>
+          </g>
+          <!-- 星星点缀 -->
+          <g fill="#F2C14E">
+            <path class="sparkle s1" transform="translate(66,108)" d="M0,-9 L2.4,-2.4 9,0 2.4,2.4 0,9 -2.4,2.4 -9,0 -2.4,-2.4 Z"/>
+            <path class="sparkle s2" transform="translate(458,84) scale(0.8)" d="M0,-9 L2.4,-2.4 9,0 2.4,2.4 0,9 -2.4,2.4 -9,0 -2.4,-2.4 Z"/>
+            <path class="sparkle s3" transform="translate(48,320) scale(0.7)" d="M0,-9 L2.4,-2.4 9,0 2.4,2.4 0,9 -2.4,2.4 -9,0 -2.4,-2.4 Z"/>
+          </g>
+        </svg>
+        <div class="bubble" id="bubble" role="status" aria-live="polite"></div>
+      </div>
+
+      <div>
+        <span class="kicker">🦤 dodobird.eu.org</span>
+        <h1>不会飞，<br /><em>但一直在线</em>。</h1>
+        <p class="sub">这里是呆呆鸟的家。看起来呆，其实只是毫无防备的真诚——毕竟在它的岛上，从来不需要设防。</p>
+        <div class="cta">
+          <button class="primary" id="voteBtn">投呆呆鸟出局</button>
+          <a class="ghost" href="#facts">它到底呆不呆？</a>
+        </div>
+        <p class="toast" id="toast" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="facts" id="facts">
+      <h2>呆鸟趣闻</h2>
+      <p class="hint">关于这只鸟，有三件事你可能想知道。</p>
+      <div class="cards">
+        <div class="card">
+          <span class="emoji">🦤</span>
+          <h3>确实灭绝了</h3>
+          <p>1681 年，渡渡鸟从毛里求斯离开这个世界，成了"灭绝"的代名词。但你看——主页还亮着。</p>
+        </div>
+        <div class="card">
+          <span class="emoji">😌</span>
+          <h3>其实不呆</h3>
+          <p>岛上没有天敌，见到人不怕不跑。那不是蠢，是没有心眼。"呆"，是人类替它背的锅。</p>
+        </div>
+        <div class="card">
+          <span class="emoji">🎲</span>
+          <h3>鹅鸭杀在逃选手</h3>
+          <p>全场唯一想被投票投出局的鸟。恭喜它，1681 年那次已经达成，此后再无 KPI。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="links" id="contact">
+      <!-- 把下面的 # 换成你自己的链接 -->
+      <a href="#"><span>🐙</span> GitHub</a>
+      <a href="#"><span>📮</span> Email</a>
+    </section>
+
+    <footer>
+      <span>© 2026 呆呆鸟 · dodobird.eu.org</span>
+      <span>灭绝，但从未下线。</span>
+    </footer>
+  </div>
+
+  <script>
+    const bubble = document.getElementById('bubble');
+    const birdInner = document.getElementById('birdInner');
+    const toast = document.getElementById('toast');
+
+    const dodoLines = [
+      '谁？',
+      '不怕。',
+      '呆是保护色。',
+      '飞是不会飞的，躺是天天躺的。',
+      '我灭绝了都还在上班，你呢？',
+      '鹅鸭杀里我是 MVP：Most Voted Player。',
+      '别投我，上一次投完就灭绝了。',
+    ];
+
+    const voteLines = [
+      '1681 年那次已经投过了，然后它灭绝了。',
+      '投票无效：目标已灭绝，但仍在线。',
+      '它眨了眨眼，看起来毫不在意。',
+      '行吧，你赢了。可它根本不在乎。',
+    ];
+
+    let bubbleTimer, toastTimer, voteCount = 0;
+
+    document.getElementById('birdSvg').addEventListener('click', () => {
+      bubble.textContent = dodoLines[Math.floor(Math.random() * dodoLines.length)];
+      bubble.classList.add('show');
+      birdInner.classList.remove('boing');
+      void birdInner.offsetWidth;
+      birdInner.classList.add('boing');
+      clearTimeout(bubbleTimer);
+      bubbleTimer = setTimeout(() => bubble.classList.remove('show'), 2400);
+    });
+
+    document.getElementById('voteBtn').addEventListener('click', (e) => {
+      toast.textContent = voteLines[voteCount % voteLines.length];
+      voteCount++;
+      toast.classList.add('show');
+      birdInner.classList.remove('shake');
+      void birdInner.offsetWidth;
+      birdInner.classList.add('shake');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+      e.currentTarget.textContent = voteCount >= 2 ? '再投也没用了' : '投呆呆鸟出局';
+    });
+
+    birdInner.addEventListener('animationend', () => birdInner.classList.remove('boing', 'shake'));
+  </script>
+</body>
+</html>
